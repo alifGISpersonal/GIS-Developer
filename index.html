@@ -1,727 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alif Shaikh - Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Comic Book Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Bangers', cursive, Arial, sans-serif;
-      background: #EDD5BD;
-      color: #575451;
-      overflow-x: hidden;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alif Shaikh - GIS Developer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .experience-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-info h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .role-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .experience-details {
+            color: var(--text-light);
+        }
+
+        .experience-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .experience-details li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-details li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .skills-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 20px 0;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            flex: 0 0 auto;
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            min-width: 120px;
+            transition: transform 0.2s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item h3 {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: var(--text-light);
+        }
+
+        /* Add smooth scrolling for overflow */
+        .skills-grid::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .skills-grid::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        .skills-grid::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-content {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .phone-numbers {
+            margin-bottom: 2rem;
+        }
+
+        .phone-numbers p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .phone-numbers a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .phone-numbers a:hover {
+            color: #1d4ed8;
+        }
+
+        .whatsapp-badge {
+            background: #25D366;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+        }
+
+        .contact-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 3rem 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .contact-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 2rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--bg-light);
+        }
+
+        .contact-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .contact-links a i {
+            font-size: 2rem;
+        }
+
+        #contact.section {
+            margin-bottom: 6rem;
+        }
+
+        .menu-toggle {
+    display: none; /* Hide by default */
+}
+
+.education-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.education-card:hover {
+    transform: translateY(-2px);
+}
+
+.education-header h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.education-details {
+    color: var(--text-light);
+}
+
+.education-details .institute {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.education-details .duration {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.education-details .location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.education-details .location i {
+    color: #ef4444;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Only show on mobile */
     }
-    body {
-      min-height: 100vh;
-      background: repeating-linear-gradient(135deg, #EDD5BD 0 40px, #F99273 40px 80px, #EDD5BD 80px 120px, #61AAB3 120px 160px);
+
+    .nav-content {
+        position: relative;
     }
-    nav {
-      background: #61AAB3;
-      border-right: 8px solid #575451;
-      width: 60px;
-      height: 100vh;
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 2rem;
-      transition: width 0.3s;
-      overflow: hidden;
-      z-index: 1002;
-      box-shadow: 8px 0 0 #F99273, 0 0 0 8px #575451;
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        display: none;
     }
-    nav:hover {
-      width: 220px;
-      background: #F99273;
+
+    .nav-links.active {
+        display: flex;
     }
-    nav a {
-      color: #575451;
-      margin: 1rem 0;
-      text-decoration: none;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      padding: 0.7rem 1.2rem;
-      width: 100%;
-      white-space: nowrap;
-      border-radius: 18px 0 0 18px;
-      font-family: 'Bangers', cursive, Arial, sans-serif;
-      letter-spacing: 1px;
-      box-shadow: 2px 2px 0 #575451;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+
+    .hero {
+        padding: 2rem 0;
     }
-    nav a i {
-      margin-right: 1rem;
-      font-size: 1.5em;
+
+    .hero h1 {
+        font-size: 2rem;
     }
-    nav a:hover {
-      background: #EDD5BD;
-      color: #F99273;
-      box-shadow: 4px 4px 0 #575451;
+
+    .experience-header {
+        grid-template-columns: 1fr;
     }
-    .download-btn {
-      margin: 1rem;
-      color: #EDD5BD;
-      background: #575451;
-      border: 3px solid #F99273;
-      padding: 0.7rem 1.5rem;
-      border-radius: 18px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-family: 'Bangers', cursive, Arial, sans-serif;
-      letter-spacing: 1px;
-      box-shadow: 2px 2px 0 #F99273;
-      opacity: 0;
-      transition: opacity 0.3s, background 0.3s, color 0.3s;
+
+    .experience-card {
+        padding: 1rem;
     }
-    nav:hover .download-btn {
-      opacity: 1;
+
+    .contact-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        padding: 1.5rem;
     }
-    .download-btn:hover {
-      background: #F99273;
-      color: #EDD5BD;
-      box-shadow: 4px 4px 0 #575451;
+
+    .contact-links a {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
-    main {
-      margin-left: 80px;
-      width: calc(100% - 80px);
-      transition: margin-left 0.3s, width 0.3s;
+
+    .phone-numbers p {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    nav:hover + main {
-      margin-left: 240px;
-      width: calc(100% - 240px);
+
+    .whatsapp-badge {
+        margin: 0.5rem 0;
     }
-    header {
-      background: url('./imgs/pexels-andrew-2859169.jpg') no-repeat center/cover;
-      height: 32vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #F99273;
-      text-shadow: 3px 3px 0 #EDD5BD, 6px 6px 0 #575451;
-      border-bottom: 8px solid #575451;
-      border-radius: 0 0 32px 32px;
-      box-shadow: 0 8px 0 #F99273;
-      filter: sepia(0.2) saturate(1.2);
+
+    .education-card {
+        padding: 1rem;
     }
-    header h1 {
-      font-size: 3.5rem;
-      text-align: center;
-      color: #F99273;
-      letter-spacing: 2px;
-      margin-bottom: 0.5rem;
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.75rem;
     }
-    header p {
-      color: #575451;
-      font-size: 2rem;
-      text-shadow: 2px 2px 0 #EDD5BD, 4px 4px 0 #575451;
+
+    .hero p {
+        font-size: 1rem;
     }
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: 2rem auto;
-      background: #EDD5BD;
-      border: 6px solid #575451;
-      border-radius: 24px;
-      box-shadow: 8px 8px 0 #F99273, 0 0 0 8px #575451;
-      position: relative;
-      z-index: 1;
-      /* --- TORN EDGE EFFECT --- */
-      clip-path: polygon(
-        0% 0%,
-        8% 2%,
-        15% 0%,
-        23% 3%,
-        30% 0%,
-        38% 2%,
-        45% 0%,
-        53% 3%,
-        60% 0%,
-        68% 2%,
-        75% 0%,
-        83% 3%,
-        90% 0%,
-        100% 4%,
-        100% 100%,
-        0% 100%
-      );
-      /* Add a torn shadow for realism */
-      box-shadow:
-        8px 8px 0 #F99273,
-        0 0 0 8px #575451,
-        0px 12px 18px -8px rgba(87,84,81,0.18);
-      overflow: hidden;
-    }
-    section::before {
-      content: "";
-      position: absolute;
-      top: -18px;
-      left: 0;
-      width: 100%;
-      height: 24px;
-      background: repeating-linear-gradient(
-        90deg,
-        #EDD5BD 0 8px,
-        #fff 8px 16px,
-        #EDD5BD 16px 24px
-      );
-      opacity: 0.7;
-      z-index: 2;
-      pointer-events: none;
-      /* mimic torn paper shadow */
-      filter: drop-shadow(0 6px 4px rgba(87,84,81,0.12));
-      clip-path: polygon(
-        0% 60%,
-        8% 100%,
-        15% 60%,
-        23% 100%,
-        30% 60%,
-        38% 100%,
-        45% 60%,
-        53% 100%,
-        60% 60%,
-        68% 100%,
-        75% 60%,
-        83% 100%,
-        90% 60%,
-        100% 100%,
-        100% 0%,
-        0% 0%
-      );
-    }
-    section::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 0;
-      width: 100%;
-      height: 24px;
-      background: repeating-linear-gradient(
-        90deg,
-        #EDD5BD 0 8px,
-        #fff 8px 16px,
-        #EDD5BD 16px 24px
-      );
-      opacity: 0.7;
-      z-index: 2;
-      pointer-events: none;
-      filter: drop-shadow(0 -6px 4px rgba(87,84,81,0.12));
-      clip-path: polygon(
-        0% 40%,
-        8% 0%,
-        15% 40%,
-        23% 0%,
-        30% 40%,
-        38% 0%,
-        45% 40%,
-        53% 0%,
-        60% 40%,
-        68% 0%,
-        75% 40%,
-        83% 0%,
-        90% 40%,
-        100% 0%,
-        100% 100%,
-        0% 100%
-      );
-    }
+
     .section-title {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: #F99273;
-      text-shadow: 2px 2px 0 #EDD5BD, 4px 4px 0 #575451;
-      letter-spacing: 2px;
+        font-size: 1.25rem;
     }
-    .skills-marquee {
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      height: 110px;
-      margin-top: 2rem;
-      background: #61AAB3;
-      border: 4px solid #575451;
-      border-radius: 18px;
-      box-shadow: 4px 4px 0 #F99273;
-      display: flex;
-      align-items: center;
+
+    .about-content p {
+        font-size: 1rem;
     }
-    .marquee-content {
-      display: flex;
-      gap: 3rem;
-      position: absolute;
-      animation: scroll-left 18s linear infinite;
-      align-items: center;
+
+    .company-info h3 {
+        font-size: 1rem;
     }
-    .skill-logo img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50px;
-      filter: grayscale(100%);
-      transition: filter 0.3s, transform 0.3s;
-      border: 3px solid #575451;
-      box-shadow: 2px 2px 0 #F99273;
-      background: #EDD5BD;
+
+    .skills-grid {
+        justify-content: flex-start;
     }
-    .skill-logo img:hover {
-      filter: grayscale(0%);
-      transform: scale(1.15) rotate(-5deg);
-      box-shadow: 4px 4px 0 #575451;
+
+    .skill-item {
+        min-width: 90px;
+        padding: 0.75rem;
     }
-    @keyframes scroll-left {
-      0% { transform: translateX(100%);}
-      100% { transform: translateX(-100%);}
+
+    .skill-item i {
+        font-size: 1.5rem;
     }
-    .card {
-      background: #61AAB3;
-      border-radius: 18px;
-      padding: 1.5rem;
-      box-shadow: 4px 4px 0 #575451, 0 0 0 4px #F99273;
-      border: 4px solid #575451;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      perspective: 1000px;
-      font-size: 1.2em;
-      color: #575451;
+
+    .skill-item h3 {
+        font-size: 0.7rem;
     }
-    .card:hover {
-      transform: translateY(-10px) scale(1.03) rotate(-2deg);
-      box-shadow: 8px 8px 0 #F99273;
+
+    .contact-links a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
     }
-    .card-front {
-      background: #61AAB3;
+}
+
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important; /* Force display on larger screens */
     }
-    .card-back {
-      background: #EDD5BD;
-    }
-    .timeline-container {
-      width: 90%;
-      margin: auto;
-    }
-    .timeline-row {
-      border: 3px solid #575451;
-      margin-bottom: 18px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 3px 3px 0 #F99273;
-      overflow: hidden;
-    }
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem;
-      cursor: pointer;
-      background: #61AAB3;
-      color: #575451;
-      font-size: 1.2em;
-      font-family: 'Bangers', cursive, Arial, sans-serif;
-      border-bottom: 2px solid #575451;
-    }
-    .timeline-header > div {
-      flex: 1;
-      font-weight: bold;
-    }
-    .toggle-btn {
-      background: #F99273;
-      border: 2px solid #575451;
-      color: #EDD5BD;
-      font-size: 1.3rem;
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 2px 2px 0 #575451;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    }
-    .toggle-btn:hover {
-      background: #EDD5BD;
-      color: #F99273;
-      box-shadow: 4px 4px 0 #575451;
-    }
-    .timeline-details {
-      display: none;
-      padding: 1.2rem;
-      background: #EDD5BD;
-      color: #575451;
-      font-size: 1.1em;
-      border-top: 2px solid #575451;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #F99273;
-      color: #EDD5BD;
-      margin-top: 2rem;
-      border-top: 8px solid #575451;
-      font-size: 1.2em;
-      letter-spacing: 1px;
-      box-shadow: 0 -8px 0 #575451;
-    }
-    /* Contact icons comic style */
-    #contact a {
-      color: #F99273;
-      background: #EDD5BD;
-      border: 3px solid #575451;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin: 0 1rem;
-      box-shadow: 2px 2px 0 #575451;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    #contact a:hover {
-      background: #F99273;
-      color: #EDD5BD;
-      box-shadow: 4px 4px 0 #575451;
-      transform: scale(1.15) rotate(-5deg);
-    }
-    /* Toggle Button Comic Style */
-    .toggle-btn.theme-toggle {
-      position: fixed;
-      bottom: 2.5rem;
-      right: 2.5rem;
-      width: 60px;
-      height: 60px;
-      background: #EDD5BD;
-      color: #F99273;
-      border: 4px solid #575451;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 #F99273;
-      font-size: 2rem;
-      z-index: 2000;
-      transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
-    }
-    .toggle-btn.theme-toggle:hover {
-      background: #F99273;
-      color: #EDD5BD;
-      box-shadow: 8px 8px 0 #575451;
-      transform: scale(1.1) rotate(-5deg);
-    }
-    /* Responsive Design */
-    @media (max-width: 900px) {
-      nav, nav:hover {
-        width: 100vw;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 1rem 0;
-        border-radius: 0;
-        box-shadow: none;
-        border-right: none;
-        border-bottom: 8px solid #575451;
-      }
-      main, nav:hover + main {
-        margin-left: 0;
-        width: 100vw;
-      }
-      header {
-        height: 20vh;
-        border-radius: 0;
-      }
-      section {
-        margin: 1rem 0;
-        border-radius: 0;
-      }
-      .skills-marquee {
-        border-radius: 0;
-      }
-    }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      .section-title { font-size: 1.3rem; }
-      .skills-marquee { height: 70px; }
-      .skill-logo img { width: 50px; height: 50px; }
-      .toggle-btn.theme-toggle { width: 44px; height: 44px; font-size: 1.3rem; }
-    }
-    /* Comic bubble for notifications */
-    .comic-bubble {
-      background: #EDD5BD;
-      border: 3px solid #575451;
-      color: #575451;
-      box-shadow: 3px 3px 0 #575451;
-    }
-    .comic-bubble:after {
-      border-top: 18px solid #575451;
-    }
-    /* Dark Mode Comic Style */
-    body.dark-mode {
-      background: repeating-linear-gradient(135deg, #575451 0 40px, #444 40px 80px, #575451 80px 120px, #F99273 120px 160px);
-      color: #EDD5BD;
-    }
-    nav.dark-mode {
-      background: #575451;
-      border-right: 8px solid #F99273;
-    }
-    nav.dark-mode a {
-      color: #EDD5BD;
-    }
-    nav.dark-mode a:hover {
-      background: #F99273;
-      color: #EDD5BD;
-      box-shadow: 4px 4px 0 #EDD5BD;
-    }
-    .card.dark-mode {
-      background: #575451;
-      color: #EDD5BD;
-      border: 4px solid #F99273;
-      box-shadow: 4px 4px 0 #EDD5BD;
-    }
-    footer.dark-mode {
-      background: #575451;
-      color: #F99273;
-      border-top: 8px solid #F99273;
-      box-shadow: 0 -8px 0 #F99273;
-    }
-    body.dark-mode .section-title {
-      color: #EDD5BD;
-      text-shadow: 2px 2px 0 #F99273, 4px 4px 0 #575451;
-    }
-    section.dark-mode {
-      background: #575451;
-      border: 6px solid #F99273;
-      box-shadow: 8px 8px 0 #EDD5BD, 0 0 0 8px #F99273;
-    }
-    .timeline-row.dark-mode {
-      background: #444;
-      border: 3px solid #F99273;
-      box-shadow: 3px 3px 0 #EDD5BD;
-    }
-    .timeline-header.dark-mode {
-      background: #F99273;
-      color: #EDD5BD;
-      border-bottom: 2px solid #EDD5BD;
-    }
-    .timeline-details.dark-mode {
-      background: #575451;
-      color: #EDD5BD;
-      border-top: 2px solid #EDD5BD;
-    }
-    .toggle-btn.dark-mode {
-      background: #EDD5BD;
-      color: #F99273;
-      border: 2px solid #F99273;
-      box-shadow: 2px 2px 0 #EDD5BD;
-    }
-    .toggle-btn.dark-mode:hover {
-      background: #F99273;
-      color: #EDD5BD;
-      box-shadow: 4px 4px 0 #EDD5BD;
-    }
-    .skills-marquee.dark-mode {
-      background: #F99273;
-      border: 4px solid #EDD5BD;
-      box-shadow: 4px 4px 0 #575451;
-    }
-    .skill-logo img.dark-mode {
-      background: #F99273;
-      border: 3px solid #EDD5BD;
-      box-shadow: 2px 2px 0 #575451;
-    }
-    .comic-bubble.dark-mode {
-      background: #F99273;
-      color: #EDD5BD;
-      border: 3px solid #EDD5BD;
-      box-shadow: 3px 3px 0 #EDD5BD;
-    }
-    .comic-bubble.dark-mode:after {
-      border-top: 18px solid #EDD5BD;
-    }
-  </style>
+}
+    </style>
 </head>
 <body>
-<nav>
-  <div>
-    <a href="#about"><i class="fas fa-user"></i> About</a>
-    <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
-    <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-  </div>
-  <button class="download-btn" onclick="downloadPortfolio()"><i class="fa-solid fa-download"></i> Download</button>
-</nav>
-<main id="portfolio">
-  <header>
-    <div style="text-align: center;">
-      <h1>Alif Shaikh</h1>
-      <p>GIS Developer</p>
-    </div>
-  </header>
-  <section id="about">
-    <h2 class="section-title"><i class="fas fa-compass"></i> About Me</h2>
-    <div class="comic-bubble" style="margin:auto;display:block;">
-      I'm a GIS Developer with 13 years of experience specializing in mapping applications using ArcGIS API for JavaScript, ReactJS, and backend technologies. Passionate about geospatial innovation and delivering intuitive solutions!
-    </div>
-  </section>
-  <section id="skills">
-    <h2 class="section-title"><i class="fas fa-map"></i> Skills</h2>
-    <div class="skills-marquee">
-      <div class="marquee-content">
-        <a href="https://developers.arcgis.com/javascript/" target="_blank" class="skill-logo">
-          <img src="./imgs/arcgisjs.png" alt="ArcGIS" />
-        </a>
-        <a href="https://www.oracle.com/database/" target="_blank" class="skill-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle" />
-        </a>
-        <a href="https://reactjs.org/docs/getting-started.html" target="_blank" class="skill-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="ReactJS" />
-        </a>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" />
-        </a>
-        <a href="https://enterprise.arcgis.com/en/" target="_blank" class="skill-logo">
-          <img src="https://enterprise.arcgis.com/assets/images/enterprise-logo.png" alt="ArcGIS Server" />
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="experience-section" id="experience">
-    <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
-    <div class="timeline-container">
-      <div class="timeline-row">
-        <div class="timeline-header">
-          <div class="date" style="color: rgb(33, 83, 233);">2025 - ∞</div>
-          <div class="company">Openware Information Systems Consulting Company</div>
-          <div class="role">Senior GIS Developer</div>
-          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
-        </div>
-        <div class="timeline-details">
-          <p>Created Dashboard using ArcGIS Dashboard to notify users of chemical corrosions and Expiry</p>
-          <p>Developed Application using ArcGIS Experience Builder to create custom widgets</p>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-header">
-          <div class="date" style="color: rgb(124, 91, 7);">2023-2025</div>
-          <div class="company">CGI</div>
-          <div class="role">Lead Analyst</div>
-          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
-        </div>
-        <div class="timeline-details">
-          <p>Conducted geoanalysis for wells and basins.</p>
-           <p>Migrated Geological TimeSlider from AWAB to Experience Builder.</p>
-            <p>Developed region-specific AWAB app for SADL.</p>
-             <p>Reported missing attribute table information to ESRI.</p>
-              <p>Performed SAM analysis.</p>
-              <p>Enhanced Shell Agol Content Search homepage.</p>
-              <p>Addressed bugs and enhancements for the Editor widget provided by ESRI</p>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-header">
-          <div class="date" style="color: indianred;">2020-2022</div>
-          <div class="company">Netnation</div>
-          <div class="role">WordPress Developer</div>
-          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
-        </div>
-        <div class="timeline-details">
-          <p>Developed and maintained customized WordPress themes and plugins for enterprise clients.</p>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-header">
-          <div class="date" style="color: rebeccapurple;">2019-2020</div>
-          <div class="company">Performalis</div>
-          <div class="role">Junior Webmaster</div>
-          <button class="toggle-btn"><i class="fas fa-plus"></i></button>
-        </div>
-        <div class="timeline-details">
-          <p>Assisted in website updates, SEO optimization, and regular content maintenance tasks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="contact">
-    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
-    <div style="text-align: center; display: flex; justify-content: center; gap: 2rem; align-items: center; margin-top: 1rem;">
-      <a href="mailto:alif.rdb@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.linkedin.com/in/alif-shaikh-90167a4b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://x.com/aliftweet" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-    </div>
-  </section>
-  <footer>
-    <p>Made with 💛 by Alif Shaikh</p>
-  </footer>
-</main>
-<!-- Comic Style Theme Toggle Button -->
-<button class="toggle-btn theme-toggle" onclick="toggleDarkMode()">
-  <i class="fas fa-moon"></i>
+    <nav>
+        <div class="nav-content">
+            <h2>Alif Shaikh</h2>
+            <button class="menu-toggle">
+    <i class="fas fa-bars"></i>
 </button>
-<script>
-function downloadPortfolio() {
-  html2canvas(document.querySelector("#portfolio")).then(canvas => {
-    const link = document.createElement('a');
-    link.download = 'portfolio.jpg';
-    link.href = canvas.toDataURL('image/jpeg');
-    link.click();
-  });
-}
-function toggleDarkMode() {
-  const body = document.body;
-  const nav = document.querySelector('nav');
-  const cards = document.querySelectorAll('.card');
-  const footer = document.querySelector('footer');
-  const toggleBtn = document.querySelector('.theme-toggle');
-  // Toggle dark mode class
-  body.classList.toggle('dark-mode');
-  nav.classList.toggle('dark-mode');
-  footer.classList.toggle('dark-mode');
-  cards.forEach(card => card.classList.toggle('dark-mode'));
-  // Section and timeline dark mode
-  document.querySelectorAll('section').forEach(sec => sec.classList.toggle('dark-mode'));
-  document.querySelectorAll('.timeline-row').forEach(row => row.classList.toggle('dark-mode'));
-  document.querySelectorAll('.timeline-header').forEach(h => h.classList.toggle('dark-mode'));
-  document.querySelectorAll('.timeline-details').forEach(d => d.classList.toggle('dark-mode'));
-  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.toggle('dark-mode'));
-  document.querySelectorAll('.skills-marquee').forEach(mq => mq.classList.toggle('dark-mode'));
-  document.querySelectorAll('.skill-logo img').forEach(img => img.classList.toggle('dark-mode'));
-  document.querySelectorAll('.comic-bubble').forEach(bub => bub.classList.toggle('dark-mode'));
-  // Change icon
-  const icon = toggleBtn.querySelector('i');
-  if (body.classList.contains('dark-mode')) {
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-  }
-}
-// Timeline toggle
-document.querySelectorAll('.timeline-row .toggle-btn').forEach(button => {
-  button.addEventListener('click', function(e) {
-    e.stopPropagation();
-    const details = button.closest('.timeline-row').querySelector('.timeline-details');
-    const icon = button.querySelector('i');
-    if (details.style.display === 'block') {
-      details.style.display = 'none';
-      icon.classList.remove('fa-minus');
-      icon.classList.add('fa-plus');
-    } else {
-      details.style.display = 'block';
-      icon.classList.remove('fa-plus');
-      icon.classList.add('fa-minus');
-    }
-  });
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Alif Shaikh</h1>
+            <p>Senior GIS Developer with 13+ years of experience</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title"><i class="fas fa-user"></i> About</h2>
+            <div class="about-content">
+                <p>Senior GIS Developer with over 14 years of experience in designing, developing, and deploying geospatial solutions using the ESRI suite of products. Skilled in ArcGIS Experience Builder, ArcGIS JavaScript SDK (4.x), ArcGIS Dashboard, ArcGIS Enterprise, and ArcGIS Online, with additional expertise in ReactJS, C# .NET, SQL, and Oracle.</p>
+                
+                <p>Proven track record of delivering enterprise-scale GIS applications and dashboards for leading clients across oil & gas, utilities, telecommunications, and government sectors including Shell, Reliance Jio, Pacific Gas & Electric, Kuwait Oil Company, and Central Board of Direct Taxes. Experienced in migrating legacy systems to modern platforms, building custom widgets, integrating APIs, and optimizing GIS workflows.</p>
+                
+                <p>Recognized for strong problem-solving, requirement analysis, and team leadership skills with the ability to translate business needs into innovative and scalable GIS web applications.</p>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            
+            <!-- Openware -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3>Openware Information Systems Consulting Company</h3>
+                        <div class="role-date">GIS Lead Developer | 2023 - Present</div>
+                        <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <a href="https://maps.app.goo.gl/bEdbye8HNn8jJsbz9" 
+                   target="_blank" 
+                   class="location-link">
+                   Kuwait
+                </a>
+            </div>
+                    </div>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Working for various Kuwait based clients like KOC, KNPC, PAI and others</li>
+                            <li>Application development in ArcGIS Experience Builder, ArcGIS SDK for JavaScript & backend communications with any API or ArcGIS server services</li>
+                            <li>GIS based project Design, Developing, testing and deploying</li>
+                            <li>Web applications in cloud environments</li>
+                            <li>Requirement gathering and estimation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CGI -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3>CGI</h3>
+                        <div class="role-date">Lead Analyst | 2023 - 2025</div>
+                        <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/n4iJch79EixtHTWq6" 
+                          target="_blank" 
+                          class="location-link">
+                          Bangalore, India
+                        </a>
+                        </div>
+                    </div>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Worked for SHELL Petrol</li>
+                            <li>Conducted geoanalysis for wells and basins.</li>
+                            <li>Migrated Geological TimeSlider from AWAB to Experience Builder.</li>
+                            <li>Developed region-specific AWAB app for SADL.</li>
+                            <li>Reported missing attribute table information to ESRI.</li>
+                            <li>Performed SAM analysis.</li>
+                            <li>Enhanced Shell Agol Content Search homepage.</li>
+                            <li>Addressed bugs and enhancements for the Editor widget provided by ESRI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RMSI Pvt Ltd -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3>RMSI Pvt Ltd</h3>
+                        <div class="role-date">Technical Specialist | 09/2021 - 07/2022</div>
+                        <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/iitnPmSQ9Un9PGzU8" 
+                          target="_blank" 
+                          class="location-link">
+                          Remote
+                        </a>
+                    </div>
+                    </div>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Worked for Pacific and Gas and Electric</li>
+                            <li>Worked in SCE Project for GeoView application's enhancements and changes using ArcGIS API for JavaScript & WebAppbuilder for ArcGIS</li>
+                            <li>Geoview is an electrical utility application built using ArcGIS API for JavaScript</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cybertech Systems and Software Limited -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3>Cybertech Systems and Software Limited</h3>
+                        <div class="role-date">Sr. Software Engineer | 07/2019 - 09/2021</div>
+                        <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/Ggv9dN8w1dMUrhKTA" 
+                          target="_blank" 
+                          class="location-link">
+                          Thane, India
+                        </a>
+                    </div>
+                    </div>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Worked for Reliance Jio Infocom Limited</li>
+                            <li>Hands on Experience in developing the application using latest features of ArcGIS API or JavaScript version 4.x And ReactJS</li>
+                            <li>Extensively worked on mapping and analysis solutions for complex requirements</li>
+                            <li>Handled Revamping of previously built ASP.net and JS applications in ReactJS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="experience-card">
+    <div class="experience-header">
+        <div class="company-info">
+            <h3>Larsen and Toubro Infotech</h3>
+            <div class="role-date">Sr. Software Engineer | 05/2018 - 07/2019</div>
+             <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/rRENWPq5AztHZDDm9" 
+                          target="_blank" 
+                          class="location-link">
+                          Ghansoli, India
+                        </a>
+                    </div>
+        </div>
+        <div class="experience-details">
+            <ul>
+                <li>Worked for CBDT, India Gov. development using WebAppBuilder for ArcGIS</li>
+                <li>Co-designed and co-developed the various requirements. Effectively worked on Custom widget</li>
+                <li>Extensively worked on generating reports out of the widgets that are developed</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Cybertech Systems -->
+<div class="experience-card">
+    <div class="experience-header">
+        <div class="company-info">
+            <h3>Cybertech Systems and Software Limited</h3>
+            <div class="role-date">Sr. GIS Analyst | 02/2015 - 04/2018</div>
+             <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/Rf6DddZRxuqRz4bC8" 
+                          target="_blank" 
+                          class="location-link">
+                          Thane, India
+                        </a>
+                    </div>
+        </div>
+        <div class="experience-details">
+            <ul>
+                <li>Handled the user cases regarding the customizations of ArcGIS Application. Major task involves meeting the need of the user</li>
+                <li>Perform on Development of code samples for User's Executing and debugging the user's code</li>
+            </ul>
+        </div>
+    </div>
+</div>
+            <!-- Finicity -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="company-info">
+                        <h3>Finicity (Formerly In2M Technologies)</h3>
+                        <div class="role-date">Software Engineer | 02/2011 - 02/2015</div>
+                        <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/gnbNrgKSN2Km6wfx6" 
+                          target="_blank" 
+                          class="location-link">
+                          Airoli, India
+                        </a>
+                    </div>
+                    </div>
+                    <div class="experience-details">
+                        <ul>
+                            <li>Major task involves meeting the need of the user</li>
+                            <li>Executing scripts changing as per the financial institutions Studying the encryption which is need for login to financial institutions and implemented it</li>
+                            <li>Handled the user issues regarding the user Mvelope's account Work with script</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title"><i class="fas fa-map"></i> Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <h3>ArcGIS JS SDK</h3>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-cubes"></i>
+                    <h3>Experience Builder</h3>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h3>WebAppBuilder</h3>
+                </div>
+                      <div class="skill-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <h3>ArcGIS Dashboard</h3>
+        </div>
+                <div class="skill-item">
+                    <i class="fas fa-building"></i>
+                    <h3>ArcGIS Enterprise</h3>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-server"></i>
+                    <h3>ArcGIS Server</h3>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <h3>ReactJS</h3>
+                </div>
+                <div class="skill-item">
+    <i class="fas fa-layer-group"></i>
+    <h3>GIS Analysis</h3>
+</div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+    <div class="education-card">
+        <div class="education-header">
+            <h3>B.Sc IT</h3>
+            <div class="education-details">
+                <p class="institute">Premier College of Arts, Science and Commerce</p>
+                <p class="duration">06/2008 - 05/2011</p>
+                <p class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://maps.app.goo.gl/VZBdkvHMFB1WGKWP6" 
+                       target="_blank" 
+                       class="location-link">
+                       Panvel, India
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="contact" class="section">
+    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="phone-numbers">
+                <p><i class="fas fa-phone"></i> Kuwait: 
+                    <a href="tel:+96541030766">+965 410 307 66</a>
+                    <span class="whatsapp-badge">WhatsApp available</span>
+                </p>
+                <p><i class="fas fa-phone"></i> India: 
+                    <a href="tel:+919930112862">+91 993 011 2862</a>
+                    <span class="whatsapp-badge">WhatsApp available</span>
+                </p>
+            </div>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:alif.rdb@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/alif-shaikh-90167a4b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/96541030766" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+</section>
+    </main>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all role-date elements
+        const roleDates = document.querySelectorAll('.role-date');
+        let earliestYear = 3000;
+        let latestYear = 0;
+
+        // Parse through all role-date elements
+        roleDates.forEach(dateElement => {
+            const dateText = dateElement.textContent;
+            // Extract years using regex
+            const years = dateText.match(/\d{4}/g);
+            
+            if (years) {
+                years.forEach(year => {
+                    const yearNum = parseInt(year);
+                    if (yearNum < earliestYear) earliestYear = yearNum;
+                    if (yearNum > latestYear && yearNum <= new Date().getFullYear()) {
+                        latestYear = yearNum;
+                    }
+                });
+            }
+        });
+
+        // Calculate total experience
+        const totalExperience = latestYear - earliestYear;
+
+        // Update the experience text in hero and about sections
+        const heroText = document.querySelector('.hero p');
+        const aboutText = document.querySelector('.about-content p:first-child');
+
+        if (heroText) {
+            heroText.textContent = `Senior GIS Developer with ${totalExperience}+ years of experience`;
+        }
+
+        if (aboutText) {
+            const updatedText = aboutText.textContent.replace(
+                /\d{2}\+ years/, 
+                `${totalExperience}+ years`
+            );
+            aboutText.textContent = updatedText;
+        }
+    });
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 });
-</script>
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-content')) {
+        navLinks.classList.remove('active');
+    }
+});
+    </script>
 </body>
 </html>
