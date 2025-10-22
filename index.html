@@ -1,861 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alif Shaikh - GIS Developer</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-            --gradient-start: #f8fafc;
-            --gradient-end: #e2e8f0;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alif Shaikh — Sr GIS Lead</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.1/html2pdf.bundle.min.js" integrity="sha512-BAkwy1Tc+ylynRQAhJUgneo839I5XlmkLI1z65tvcPY34JvAcupl25c6PnQA71A66XYxO8axwCb0FAefxPo0nQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
-
-        nav {
-            background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 80px auto 0;
-            padding: 2rem;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            color: var(--text-light);
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        .section {
-            margin: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .experience-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .experience-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .company-info h3 {
-            font-size: 1.1rem;
-            color: var(--primary);
-        }
-
-        .role-date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .experience-details {
-            color: var(--text-light);
-        }
-
-        .experience-details ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .experience-details li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .experience-details li::before {
-            content: "•";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-        }
-
-        .skills-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            padding: 20px 0;
-            gap: 1.5rem;
-        }
-
-        .skill-item {
-            flex: 0 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            border-radius: 6px;
-            text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            min-width: 120px;
-            transition: transform 0.2s;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-item i {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-item h3 {
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            color: var(--text-light);
-        }
-
-        /* Add smooth scrolling for overflow */
-        .skills-grid::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .skills-grid::-webkit-scrollbar-track {
-            background: var(--bg-light);
-        }
-
-        .skills-grid::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
-        .about-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .about-content p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .about-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .phone-numbers {
-            margin-bottom: 2rem;
-        }
-
-        .phone-numbers p {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .phone-numbers a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .phone-numbers a:hover {
-            color: #1d4ed8;
-        }
-
-        .whatsapp-badge {
-            background: #25D366;
-            color: white;
-            font-size: 0.8rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            margin-left: 0.5rem;
-        }
-
-        .contact-links {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            padding: 3rem 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .contact-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 2rem;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--bg-light);
-        }
-
-        .contact-links a:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-            background: white;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
-        }
-
-        .contact-links a i {
-            font-size: 2rem;
-        }
-
-        #contact.section {
-            margin-bottom: 6rem;
-        }
-
-        .menu-toggle {
-    display: none; /* Hide by default */
-}
-
-.education-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-
-.education-card:hover {
-    transform: translateY(-2px);
-}
-
-.education-header h3 {
-    color: var(--primary);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.education-details {
-    color: var(--text-light);
-}
-
-.education-details .institute {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.education-details .duration {
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.education-details .location {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.education-details .location i {
-    color: #ef4444;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Only show on mobile */
+  <style>
+    :root{
+      --primary:#2563eb;
+      --muted:#64748b;
+      --bg:#f7fafc;
+      --glass: rgba(255,255,255,0.7);
+      --card: rgba(255,255,255,0.9);
+      --text:#0f172a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      line-height:1.5;
+      background-color:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100%;
+      /* Satellite-like background — light, desaturated, low-contrast */
+      background-image:
+        linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)),
+        url('https://images.unsplash.com/photo-1543191878-2baa4ff8a570?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170');
+      background-position:center;
+      background-size:cover;
+      background-attachment:fixed;
     }
 
-    .nav-content {
-        position: relative;
+    /* subtle vignette so content reads above the image */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(0,0,0,0.04) 100%);
+      pointer-events:none;
     }
 
-    .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: white;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        display: none;
+    nav{
+      position:fixed; top:0; left:0; right:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:14px 20px; z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.5));
+      border-bottom: 1px solid rgba(15,23,42,0.06);
+    }
+    .nav-inner{max-width:1200px; width:100%; display:flex; justify-content:space-between; align-items:center; gap:12px}
+    nav h2{font-size:1rem; font-weight:700; color:var(--text)}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{color:var(--muted); text-decoration:none; font-weight:600}
+    .nav-links a:hover{color:var(--primary)}
+
+    main{max-width:1100px; margin:100px auto 80px; padding:2rem}
+
+    /* HERO */
+    .hero{
+      display:flex; align-items:center; gap:28px; background:var(--glass);
+      border-radius:14px; padding:26px; box-shadow: 0 8px 30px rgba(15,23,42,0.08);
+      backdrop-filter: blur(8px); border:1px solid rgba(15,23,42,0.04);
     }
 
-    .nav-links.active {
-        display: flex;
-    }
+    .hero-left{flex:1; min-width:220px}
+    .hero-right{width:320px; flex-shrink:0}
 
-    .hero {
-        padding: 2rem 0;
-    }
+    .hero h1{font-size:1.75rem; margin-bottom:6px; color:var(--text); letter-spacing: -0.2px}
+    .hero .role{color:var(--muted); margin-bottom:10px; font-weight:600}
+    .hero .blurb{color:var(--muted); font-size:0.98rem; margin-bottom:14px}
 
-    .hero h1 {
-        font-size: 2rem;
-    }
+    .hero-meta{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .pill{background:rgba(37,99,235,0.12); color:var(--primary); padding:6px 10px; border-radius:999px; font-weight:700; font-size:0.86rem}
 
-    .experience-header {
-        grid-template-columns: 1fr;
+    /* Contact block inside hero (right) */
+    .contact-card{
+      background:var(--card); padding:18px; border-radius:12px;
+      display:flex; flex-direction:column; gap:12px; align-items:center;
+      text-align:center; border:1px solid rgba(15,23,42,0.04)
     }
+    .contact-card .phones{color:var(--text); font-weight:600}
+    .contact-card .phones a{color:var(--primary); text-decoration:none}
+    .contact-links{display:flex; gap:12px; margin-top:6px}
+    .contact-links a{display:inline-flex; align-items:center; justify-content:center;
+      width:44px;height:44px;border-radius:10px;background:rgba(0,0,0,0.03); color:var(--muted); text-decoration:none; font-size:1.05rem}
+    .contact-links a:hover{color:var(--primary); transform:translateY(-3px); background:rgba(255,255,255,0.7); box-shadow:0 6px 18px rgba(37,99,235,0.06)}
+    .resume-btn{
+      display:inline-flex; gap:8px; align-items:center; padding:9px 12px; border-radius:8px;
+      background:var(--primary); color:white; text-decoration:none; font-weight:700; margin-top:6px;cursor: pointer;
+      box-shadow: 0 6px 18px rgba(37,99,235,0.12);
+    }
+    .resume-btn i{font-size:0.95rem}
+    .resume-btn:hover{background:#1e40af; box-shadow:0 8px 24px rgba(37,99,235,0.2); transform:translateY(-2px)}
 
-    .experience-card {
-        padding: 1rem;
-    }
+    /* Section styles */
+    .section{margin-top:36px}
+    .section-title{font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:14px; display:flex; gap:10px; align-items:center}
+    .card{background:var(--card); padding:18px; border-radius:10px; box-shadow: 0 6px 20px rgba(2,6,23,0.04); border:1px solid rgba(15,23,42,0.04)}
+    .experience-card{margin-bottom:12px; padding:14px; border-radius:8px; background:rgba(255,255,255,0.95)}
+    .experience-header{display:grid; grid-template-columns:1fr 2fr; gap:12px}
+    .company-info h3{color:var(--primary); font-size:1.02rem}
+    .role-date{color:var(--muted); font-size:0.9rem}
+    .experience-details{color:var(--muted); margin-top:8px}
+    .experience-details ul{padding-left:1.1rem}
+    .experience-details li{margin-bottom:6px}
 
-    .contact-links {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        padding: 1.5rem;
-    }
+    /* Skills */
+    .skills-grid{display:flex; gap:12px; overflow-x:auto; padding:12px 0}
+    .skill-item{background:rgba(255,255,255,0.95); padding:12px 14px; border-radius:8px; min-width:120px; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.03)}
+    .skill-item i{font-size:1.35rem; color:var(--primary); margin-bottom:8px; display:block}
+    .skill-item h3{font-size:0.9rem; color:var(--muted)}
 
-    .contact-links a {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
+    /* Education */
+    .education-card{padding:14px}
 
-    .phone-numbers p {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+    /* To top */
+    #goToTop{position:fixed; right:22px; bottom:22px; background:var(--primary); color:#fff; border:none; width:48px; height:48px; border-radius:50%; display:none; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(37,99,235,0.12)}
 
-    .whatsapp-badge {
-        margin: 0.5rem 0;
+    @media (max-width:900px){
+      .hero{flex-direction:column; align-items:stretch}
+      .hero-right{width:100%}
+      .experience-header{grid-template-columns:1fr}
+      nav{padding:10px}
     }
-
-    .education-card {
-        padding: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.75rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.25rem;
-    }
-
-    .about-content p {
-        font-size: 1rem;
-    }
-
-    .company-info h3 {
-        font-size: 1rem;
-    }
-
-    .skills-grid {
-        justify-content: flex-start;
-    }
-
-    .skill-item {
-        min-width: 90px;
-        padding: 0.75rem;
-    }
-
-    .skill-item i {
-        font-size: 1.5rem;
-    }
-
-    .skill-item h3 {
-        font-size: 0.7rem;
-    }
-
-    .contact-links a {
-        width: 50px;
-        height: 50px;
-        font-size: 1.25rem;
-    }
-}
-
-@media (min-width: 769px) {
-    .nav-links {
-        display: flex !important; /* Force display on larger screens */
-    }
-}
-    </style>
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <h2>Alif Shaikh</h2>
-            <button class="menu-toggle">
-    <i class="fas fa-bars"></i>
-</button>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-            </div>
+
+  <nav>
+    <div class="nav-inner">
+      <h2>Alif Shaikh</h2>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="portfolio-content">
+    <!-- HERO + CONTACT combined -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <h1 id="nameTitle">Alif Shaikh</h1>
+        <div class="role" id="roleTitle">Sr GIS Developer</div>
+        <div class="blurb" id="heroBlurb">Sr GIS Developer with extensive experience building and developing enterprise geospatial solutions using the ESRI stack and modern web technologies.</div>
+
+        <div class="hero-meta" style="margin-top:12px;">
+          <div class="pill" id="expPill">14+ years</div>
+          <div style="color:var(--muted); font-weight:600">Preferred Locations: GCC • Bengaluru • Chennai</div>
         </div>
-    </nav>
+      </div>
 
-    <main>
-        <section class="hero">
-            <h1>Alif Shaikh</h1>
-            <p>Senior GIS Developer with 13+ years of experience</p>
-        </section>
+      <aside class="hero-right">
+        <div class="contact-card" role="region" aria-label="Contact">
+          <div style="font-weight:700; font-size:0.97rem">Get in touch</div>
+          <div class="phones" style="font-size:0.98rem; margin-top:6px">
+            <div>Kuwait: <a href="tel:+96541030766">+965 410 307 66</a></div>
+            <div>India: <a href="tel:+919930112862">+91 993 011 2862</a></div>
+          </div>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <h2 class="section-title"><i class="fas fa-user"></i> About</h2>
-            <div class="about-content">
-                <p>Senior GIS Developer with over 14 years of experience in designing, developing, and deploying geospatial solutions using the ESRI suite of products. Skilled in ArcGIS Experience Builder, ArcGIS JavaScript SDK (4.x), ArcGIS Dashboard, ArcGIS Enterprise, and ArcGIS Online, with additional expertise in ReactJS, C# .NET, SQL, and Oracle.</p>
-                
-                <p>Proven track record of delivering enterprise-scale GIS applications and dashboards for leading clients across oil & gas, utilities, telecommunications, and government sectors including Shell, Reliance Jio, Pacific Gas & Electric, Kuwait Oil Company, and Central Board of Direct Taxes. Experienced in migrating legacy systems to modern platforms, building custom widgets, integrating APIs, and optimizing GIS workflows.</p>
-                
-                <p>Recognized for strong problem-solving, requirement analysis, and team leadership skills with the ability to translate business needs into innovative and scalable GIS web applications.</p>
-            </div>
-        </section>
+          <div class="contact-links" aria-hidden="false" style="justify-content:center">
+            <a href="mailto:alif.rdb@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/alif-shaikh-90167a4b/" target="_blank" title="LinkedIn" rel="noopener"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/96541030766" target="_blank" title="WhatsApp" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          </div>
 
-        <section id="experience" class="section">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
-            
-            <!-- Openware -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="company-info">
-                        <h3>Openware Information Systems Consulting Company</h3>
-                        <div class="role-date">GIS Lead Developer | 2023 - Present</div>
-                        <div class="location">
-                <i class="fas fa-map-marker-alt"></i>
-                <a href="https://maps.app.goo.gl/bEdbye8HNn8jJsbz9" 
-                   target="_blank" 
-                   class="location-link">
-                   Kuwait
-                </a>
-            </div>
-                    </div>
-                    <div class="experience-details">
-                        <ul>
-                            <li>Working for various Kuwait based clients like KOC, KNPC, PAI and others</li>
-                            <li>Application development in ArcGIS Experience Builder, ArcGIS SDK for JavaScript & backend communications with any API or ArcGIS server services</li>
-                            <li>GIS based project Design, Developing, testing and deploying</li>
-                            <li>Web applications in cloud environments</li>
-                            <li>Requirement gathering and estimation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          <!-- <a class="resume-btn"  download title="Download Resume">
+            <i class="fas fa-download"></i> Download Resume
+          </a> -->
+        </div>
+      </aside>
+    </section>
 
-            <!-- CGI -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="company-info">
-                        <h3>CGI</h3>
-                        <div class="role-date">Lead Analyst | 2023 - 2025</div>
-                        <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/n4iJch79EixtHTWq6" 
-                          target="_blank" 
-                          class="location-link">
-                          Bangalore, India
-                        </a>
-                        </div>
-                    </div>
-                    <div class="experience-details">
-                        <ul>
-                            <li>Worked for SHELL Petrol</li>
-                            <li>Conducted geoanalysis for wells and basins.</li>
-                            <li>Migrated Geological TimeSlider from AWAB to Experience Builder.</li>
-                            <li>Developed region-specific AWAB app for SADL.</li>
-                            <li>Reported missing attribute table information to ESRI.</li>
-                            <li>Performed SAM analysis.</li>
-                            <li>Enhanced Shell Agol Content Search homepage.</li>
-                            <li>Addressed bugs and enhancements for the Editor widget provided by ESRI</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="section-title"><i class="fas fa-user"></i> About</div>
+      <div class="card about-content">
+        <p id="aboutPara">Sr GIS Developer with extensive experience in designing, developing, and deploying geospatial solutions using ArcGIS Experience Builder, ArcGIS JavaScript SDK (4.x), ArcGIS Enterprise and ArcGIS Online. Comfortable building custom Experience Builder widgets, migrating legacy apps, and delivering enterprise GIS solutions for oil & gas, utilities, telco and government.</p>
+      </div>
+    </section>
 
-            <!-- RMSI Pvt Ltd -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="company-info">
-                        <h3>RMSI Pvt Ltd</h3>
-                        <div class="role-date">Technical Specialist | 09/2021 - 07/2022</div>
-                        <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/iitnPmSQ9Un9PGzU8" 
-                          target="_blank" 
-                          class="location-link">
-                          Remote
-                        </a>
-                    </div>
-                    </div>
-                    <div class="experience-details">
-                        <ul>
-                            <li>Worked for Pacific and Gas and Electric</li>
-                            <li>Worked in SCE Project for GeoView application's enhancements and changes using ArcGIS API for JavaScript & WebAppbuilder for ArcGIS</li>
-                            <li>Geoview is an electrical utility application built using ArcGIS API for JavaScript</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</div>
 
-            <!-- Cybertech Systems and Software Limited -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="company-info">
-                        <h3>Cybertech Systems and Software Limited</h3>
-                        <div class="role-date">Sr. Software Engineer | 07/2019 - 09/2021</div>
-                        <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/Ggv9dN8w1dMUrhKTA" 
-                          target="_blank" 
-                          class="location-link">
-                          Thane, India
-                        </a>
-                    </div>
-                    </div>
-                    <div class="experience-details">
-                        <ul>
-                            <li>Worked for Reliance Jio Infocom Limited</li>
-                            <li>Hands on Experience in developing the application using latest features of ArcGIS API or JavaScript version 4.x And ReactJS</li>
-                            <li>Extensively worked on mapping and analysis solutions for complex requirements</li>
-                            <li>Handled Revamping of previously built ASP.net and JS applications in ReactJS</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="experience-card">
-    <div class="experience-header">
-        <div class="company-info">
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
+            <h3>Openware Information Systems Consulting Company</h3>
+            <div class="role-date">Sr GIS Developer | 2025 - Present</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/bEdbye8HNn8jJsbz9" target="_blank" rel="noopener">Kuwait</a></div>
+          </div>
+          <div class="experience-details">
+            <ul>
+              <li>Working for Kuwait-based clients (KOC, KNPC, PAI) delivering Experience Builder solutions, JS SDK integrations and geospatial system enhancements.</li>
+              <li>Leading design, development, testing and deployment of GIS web applications in cloud and enterprise environments.</li>
+              <li>Requirement analysis, estimation and team leadership for enterprise-scale GIS projects.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
+            <h3>CGI</h3>
+            <div class="role-date">Lead Analyst | 2023 - 2025</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/n4iJch79EixtHTWq6" target="_blank" rel="noopener">Bengaluru, India</a></div>
+          </div>
+          <div class="experience-details">
+            <ul>
+              <li>Geospatial analysis and application enhancements for SHELL projects; migrated TimeSlider solutions into Experience Builder.</li>
+              <li>Worked closely with product teams to improve ArcGIS Editor widget functionality and UX.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
+            <h3>RMSI Pvt Ltd</h3>
+            <div class="role-date">Technical Specialist | 09/2021 - 07/2022</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Remote</div>
+          </div>
+          <div class="experience-details">
+            <ul>
+              <li>ArcGIS API for JavaScript & WebAppBuilder enhancements for utility clients (PG&E, SCE).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- other roles preserved -->
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
+            <h3>Cybertech Systems and Software Limited</h3>
+            <div class="role-date">Sr. Software Engineer | 07/2019 - 09/2021</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Thane, India</div>
+          </div>
+          <div class="experience-details">
+            <ul>
+              <li>Developed ReactJS + ArcGIS JS applications and modernized legacy GIS systems.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
             <h3>Larsen and Toubro Infotech</h3>
             <div class="role-date">Sr. Software Engineer | 05/2018 - 07/2019</div>
-             <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/rRENWPq5AztHZDDm9" 
-                          target="_blank" 
-                          class="location-link">
-                          Ghansoli, India
-                        </a>
-                    </div>
-        </div>
-        <div class="experience-details">
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Ghansoli, India</div>
+          </div>
+          <div class="experience-details">
             <ul>
-                <li>Worked for CBDT, India Gov. development using WebAppBuilder for ArcGIS</li>
-                <li>Co-designed and co-developed the various requirements. Effectively worked on Custom widget</li>
-                <li>Extensively worked on generating reports out of the widgets that are developed</li>
+              <li>Custom GIS widgets and reporting solutions for government clients (CBDT).</li>
             </ul>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
 
-<!-- Cybertech Systems -->
-<div class="experience-card">
-    <div class="experience-header">
-        <div class="company-info">
-            <h3>Cybertech Systems and Software Limited</h3>
-            <div class="role-date">Sr. GIS Analyst | 02/2015 - 04/2018</div>
-             <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/Rf6DddZRxuqRz4bC8" 
-                          target="_blank" 
-                          class="location-link">
-                          Thane, India
-                        </a>
-                    </div>
-        </div>
-        <div class="experience-details">
+      <div class="experience-card card">
+        <div class="experience-header">
+          <div class="company-info">
+            <h3>Finicity (Formerly In2M Technologies)</h3>
+            <div class="role-date">Software Engineer | 02/2011 - 02/2015</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Airoli, India</div>
+          </div>
+          <div class="experience-details">
             <ul>
-                <li>Handled the user cases regarding the customizations of ArcGIS Application. Major task involves meeting the need of the user</li>
-                <li>Perform on Development of code samples for User's Executing and debugging the user's code</li>
+              <li>Early full-stack development and integrations; worked on secure automation scripts and data flows.</li>
             </ul>
+          </div>
         </div>
-    </div>
-</div>
-            <!-- Finicity -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <div class="company-info">
-                        <h3>Finicity (Formerly In2M Technologies)</h3>
-                        <div class="role-date">Software Engineer | 02/2011 - 02/2015</div>
-                        <div class="location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <a href="https://maps.app.goo.gl/gnbNrgKSN2Km6wfx6" 
-                          target="_blank" 
-                          class="location-link">
-                          Airoli, India
-                        </a>
-                    </div>
-                    </div>
-                    <div class="experience-details">
-                        <ul>
-                            <li>Major task involves meeting the need of the user</li>
-                            <li>Executing scripts changing as per the financial institutions Studying the encryption which is need for login to financial institutions and implemented it</li>
-                            <li>Handled the user issues regarding the user Mvelope's account Work with script</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+      </div>
 
-        <section id="skills" class="section">
-            <h2 class="section-title"><i class="fas fa-map"></i> Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <i class="fas fa-code"></i>
-                    <h3>ArcGIS JS SDK</h3>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-cubes"></i>
-                    <h3>Experience Builder</h3>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <h3>WebAppBuilder</h3>
-                </div>
-                      <div class="skill-item">
-            <i class="fas fa-tachometer-alt"></i>
-            <h3>ArcGIS Dashboard</h3>
-        </div>
-                <div class="skill-item">
-                    <i class="fas fa-building"></i>
-                    <h3>ArcGIS Enterprise</h3>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-server"></i>
-                    <h3>ArcGIS Server</h3>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                </div>
-                <div class="skill-item">
-                    <i class="fab fa-react"></i>
-                    <h3>ReactJS</h3>
-                </div>
-                <div class="skill-item">
-    <i class="fas fa-layer-group"></i>
-    <h3>GIS Analysis</h3>
-</div>
-            </div>
-        </section>
+    </section>
 
-        <section id="education" class="section">
-    <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-    <div class="education-card">
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="section-title"><i class="fas fa-map"></i> Skills</div>
+      <div class="skills-grid">
+        <div class="skill-item"><i class="fas fa-code"></i><h3>ArcGIS JS SDK</h3></div>
+        <div class="skill-item"><i class="fas fa-cubes"></i><h3>Experience Builder</h3></div>
+        <div class="skill-item"><i class="fas fa-puzzle-piece"></i><h3>WebAppBuilder</h3></div>
+        <div class="skill-item"><i class="fas fa-tachometer-alt"></i><h3>ArcGIS Dashboard</h3></div>
+        <div class="skill-item"><i class="fas fa-layer-group"></i><h3>GIS Analysis</h3></div>
+        <div class="skill-item"><i class="fas fa-building"></i><h3>ArcGIS Enterprise</h3></div>
+        <div class="skill-item"><i class="fas fa-server"></i><h3>ArcGIS Server</h3></div>
+        <div class="skill-item"><i class="fab fa-js"></i><h3>JavaScript</h3></div>
+        <div class="skill-item"><i class="fab fa-react"></i><h3>ReactJS</h3></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+      <div class="education-card card">
         <div class="education-header">
-            <h3>B.Sc IT</h3>
-            <div class="education-details">
-                <p class="institute">Premier College of Arts, Science and Commerce</p>
-                <p class="duration">06/2008 - 05/2011</p>
-                <p class="location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <a href="https://maps.app.goo.gl/VZBdkvHMFB1WGKWP6" 
-                       target="_blank" 
-                       class="location-link">
-                       Panvel, India
-                    </a>
-                </p>
-            </div>
+          <h3>B.Sc IT</h3>
+          <div class="education-details">
+            <p class="institute">Premier College of Arts, Science and Commerce</p>
+            <p class="duration">06/2008 - 05/2011</p>
+            <p class="location"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/VZBdkvHMFB1WGKWP6" target="_blank" rel="noopener">Panvel, India</a></p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-        <section id="contact" class="section">
-    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact</h2>
-    <div class="contact-content">
-        <div class="contact-info">
-            <div class="phone-numbers">
-                <p><i class="fas fa-phone"></i> Kuwait: 
-                    <a href="tel:+96541030766">+965 410 307 66</a>
-                    <span class="whatsapp-badge">WhatsApp available</span>
-                </p>
-                <p><i class="fas fa-phone"></i> India: 
-                    <a href="tel:+919930112862">+91 993 011 2862</a>
-                    <span class="whatsapp-badge">WhatsApp available</span>
-                </p>
-            </div>
-        </div>
-        <div class="contact-links">
-            <a href="mailto:alif.rdb@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/alif-shaikh-90167a4b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://wa.me/96541030766" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        </div>
-    </div>
-</section>
-    </main>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all role-date elements
-        const roleDates = document.querySelectorAll('.role-date');
-        let earliestYear = 3000;
-        let latestYear = 0;
+  </main>
 
-        // Parse through all role-date elements
-        roleDates.forEach(dateElement => {
-            const dateText = dateElement.textContent;
-            // Extract years using regex
-            const years = dateText.match(/\d{4}/g);
-            
-            if (years) {
-                years.forEach(year => {
-                    const yearNum = parseInt(year);
-                    if (yearNum < earliestYear) earliestYear = yearNum;
-                    if (yearNum > latestYear && yearNum <= new Date().getFullYear()) {
-                        latestYear = yearNum;
-                    }
-                });
-            }
+  <button id="goToTop" title="Go to top" aria-label="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // compute experience based on years found in role-date strings
+    const roleDates = document.querySelectorAll('.role-date');
+    let earliest = 9999, latest = 0;
+    const currentYear = new Date().getFullYear();
+
+    roleDates.forEach(el => {
+      const matches = el.textContent.match(/\d{4}/g);
+      if (matches) {
+        matches.forEach(y => {
+          const num = parseInt(y, 10);
+          if (num < earliest) earliest = num;
+          if (num > latest && num <= currentYear) latest = num;
         });
-
-        // Calculate total experience
-        const totalExperience = latestYear - earliestYear;
-
-        // Update the experience text in hero and about sections
-        const heroText = document.querySelector('.hero p');
-        const aboutText = document.querySelector('.about-content p:first-child');
-
-        if (heroText) {
-            heroText.textContent = `Senior GIS Developer with ${totalExperience}+ years of experience in ESRI Suite Specialist (ArcGIS JS SDK, Experience Builder, Dashboards, Enterprise) |JavaScript, ReactJS, .NET, SQL | Enterprise-Scale Geospatial Solutions`;
-
-            //Senior GIS Developer | 14+ Years | ESRI Suite Specialist (ArcGIS JS SDK, Experience Builder, Dashboards, Enterprise) | ReactJS, .NET, SQL, Oracle | Enterprise-Scale Geospatial Solutions
-        }
-
-        if (aboutText) {
-            const updatedText = aboutText.textContent.replace(
-                /\d{2}\+ years/, 
-                `${totalExperience}+ years`
-            );
-            aboutText.textContent = updatedText;
-        }
+      }
     });
 
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-content')) {
-        navLinks.classList.remove('active');
+    let total = 14;
+    if (earliest !== 9999 && latest !== 0 && latest >= earliest) {
+      total = latest - earliest;
+      if (total < 1) total = 1;
     }
-});
-    </script>
+
+    // Update hero and pill
+    document.getElementById('expPill').textContent = `${total}+ years`;
+    document.getElementById('heroBlurb').textContent =
+      `Sr GIS Lead with ${total}+ years of experience delivering enterprise geospatial solutions (Experience Builder, ArcGIS JS SDK, ArcGIS Enterprise) and leading cross-functional GIS teams.`;
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // ✅ WORKING HTML2PDF DOWNLOAD
+    const downldBtn = document.querySelector('.resume-btn');
+    downldBtn.addEventListener('click', function () {
+      const element = document.getElementById('portfolio-content');
+      if (!element) {
+        alert('Portfolio content not found!');
+        return;
+      }
+
+      const opt = {
+        margin: 0.3,
+        filename: 'Alif_Shaikh_Portfolio.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Using the compatible version syntax
+      html2pdf().from(element).set(opt).save();
+    });
+
+    // Go to top button
+    const goBtn = document.getElementById('goToTop');
+    window.addEventListener('scroll', function () {
+      goBtn.style.display = window.scrollY > 150 ? 'flex' : 'none';
+    });
+    goBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  });
+</script>
 </body>
 </html>
