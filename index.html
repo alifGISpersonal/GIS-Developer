@@ -112,9 +112,20 @@
 
     /* Skills */
     .skills-grid{display:flex; gap:12px; overflow-x:auto; padding:12px 0}
-    .skill-item{background:rgba(255,255,255,0.95); padding:12px 14px; border-radius:8px; min-width:120px; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.03)}
-    .skill-item i{font-size:1.35rem; color:var(--primary); margin-bottom:8px; display:block}
-    .skill-item h3{font-size:0.9rem; color:var(--muted)}
+    .skill-item{background:rgba(255,255,255,0.95); padding:12px 14px; border-radius:8px; min-width:120px; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.03); transition: transform 0.3s ease}
+    .skill-item i{
+      font-size:1.35rem; 
+      color:var(--primary); 
+      margin-bottom:8px; 
+      display:block;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover i{
+      transform: scale(1.25) translateY(-4px);
+      color: #1e40af;
+      filter: drop-shadow(0 4px 12px rgba(37,99,235,0.3));
+    }
+    .skill-item h3{font-size:0.9rem; color:var(--muted); transition: color 0.3s ease}
 
     /* Education */
     .education-card{padding:14px}
@@ -245,7 +256,7 @@
           <div class="company-info">
             <h3>Cybertech Systems and Software Limited</h3>
             <div class="role-date">Sr. Software Engineer | 07/2019 - 09/2021</div>
-            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Thane, India</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/AzDfCqu9DPGGuqBR6" target="_blank" rel="noopener">Thane, India</a></div>
           </div>
           <div class="experience-details">
             <ul>
@@ -260,7 +271,7 @@
           <div class="company-info">
             <h3>Larsen and Toubro Infotech</h3>
             <div class="role-date">Sr. Software Engineer | 05/2018 - 07/2019</div>
-            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Ghansoli, India</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/Bz5ZrYQM3atVgYNHA" target="_blank" rel="noopener">Ghansoli, India</a></div>
           </div>
           <div class="experience-details">
             <ul>
@@ -275,7 +286,7 @@
           <div class="company-info">
             <h3>Finicity (Formerly In2M Technologies)</h3>
             <div class="role-date">Software Engineer | 02/2011 - 02/2015</div>
-            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> Airoli, India</div>
+            <div class="location" style="margin-top:6px"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/MJbN5TKnbZ6z7duu5" target="_blank" rel="noopener">Airoli, India</a></div>
           </div>
           <div class="experience-details">
             <ul>
@@ -362,24 +373,26 @@
 
     // ✅ WORKING HTML2PDF DOWNLOAD
     const downldBtn = document.querySelector('.resume-btn');
-    downldBtn.addEventListener('click', function () {
-      const element = document.getElementById('portfolio-content');
-      if (!element) {
-        alert('Portfolio content not found!');
-        return;
-      }
+    if (downldBtn) {
+      downldBtn.addEventListener('click', function () {
+        const element = document.getElementById('portfolio-content');
+        if (!element) {
+          alert('Portfolio content not found!');
+          return;
+        }
 
-      const opt = {
-        margin: 0.3,
-        filename: 'Alif_Shaikh_Portfolio.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
+        const opt = {
+          margin: 0.3,
+          filename: 'Alif_Shaikh_Portfolio.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
 
-      // Using the compatible version syntax
-      html2pdf().from(element).set(opt).save();
-    });
+        // Using the compatible version syntax
+        html2pdf().from(element).set(opt).save();
+      });
+    }
 
     // Go to top button
     const goBtn = document.getElementById('goToTop');
@@ -391,5 +404,3 @@
 </script>
 </body>
 </html>
-
-
